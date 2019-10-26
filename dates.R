@@ -28,7 +28,7 @@ sort_date = function(dat){
   dat$sorted_date = paste0(dat$year, '-', dat$month, '-', dat$day)
   
   # Return
-  return(dat)
+  return(dat[,c('DATE', 'date_format', 'sorted_date')])
   
 }
 
