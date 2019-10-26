@@ -71,7 +71,7 @@ DATE = c('17.10.2019', '18.9.2019', '2019-10.18', '2019.10.17', '23/9/2019', '20
 test_data = data.frame(DATE)
 
 # Manually enter date format (this is the only part that will need to be manually entered, in Excel or R)
-test_data$date_format = c('dmy','dmy','ymd','ymd','dmy','ymd','dmy','mdy','ymd','dmy')
+test_data$date_format = c('dmy','dmy','ymd','ymd','dmy','ydm','dmy','mdy','ymd','dmy')
 
 # Function
 sort_date(test_data)
