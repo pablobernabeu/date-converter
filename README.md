@@ -1,6 +1,6 @@
 This minimal **`format_date()`** function ([see origin](https://twitter.com/SauChin_Chen/status/1187550520774279168)) converts variously formatted dates to computer format (YYYY-MM-DD). It takes a dataframe (e.g., from a spreadsheet) containing a 'DATE' and a 'date_format' column (among any others). The original date format ('dmy', 'ymd', 'ydm' or 'mdy') needs to be pre-entered, whether in a spreadsheet or in R. All else automatic.
 
-![Example](https://github.com/pablobernabeu/date-converter/blob/master/dates.png)
+![Example](https://github.com/pablobernabeu/date-converter/blob/master/example.png)
 
 -------------------------------------------------------------------------
 
