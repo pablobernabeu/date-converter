@@ -74,7 +74,7 @@ DATE = c('17.10.2019', '18.9.19', '2019-10.18', '19.10.17', '23/9/2019', '2019/2
          'December 9, 2019', '2019 December 9', '10 Dec 2019')
 test_data = data.frame(DATE)
 
-# Manually enter date format (this is the only part that will need to be manually entered, in a spreadsheet or R)
+# Manually enter date format (this is the only part that will need to be manually entered, in a spreadsheet or in R)
 test_data$date_format = c('dmy','dmy','ymd','ymd','dmy','ydm','dmy','mdy','ymd','dmy')
 
 # Function
