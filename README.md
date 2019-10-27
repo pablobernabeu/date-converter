@@ -1,4 +1,4 @@
-This minimal **`sort_date()`** function ([see origin](https://twitter.com/SauChin_Chen/status/1187550520774279168)) converts variously formatted dates to computer format (YYYY-MM-DD). It takes a dataframe (e.g., from a spreadsheet) containing a 'DATE' and a 'date_format' column (among any others). The original date format ('dmy', 'ymd', 'ydm' or 'mdy') needs to be pre-entered, whether in a spreadsheet or in R. All else automatic.
+This minimal **`format_date()`** function ([see origin](https://twitter.com/SauChin_Chen/status/1187550520774279168)) converts variously formatted dates to computer format (YYYY-MM-DD). It takes a dataframe (e.g., from a spreadsheet) containing a 'DATE' and a 'date_format' column (among any others). The original date format ('dmy', 'ymd', 'ydm' or 'mdy') needs to be pre-entered, whether in a spreadsheet or in R. All else automatic.
 
 ![Example](https://github.com/pablobernabeu/date-converter/blob/master/dates.png)
 
@@ -8,21 +8,21 @@ This minimal **`sort_date()`** function ([see origin](https://twitter.com/SauChi
 
 # R function for converting variously formatted dates to computer format (YYYY-MM-DD).
 
-sort_date = function(dat){
-
+format_date = function(dat){
+  
   # Character format
   dat$DATE = as.character(dat$DATE)
   dat$date_format = as.character(dat$date_format)
-
+  
   # Replace any special characters with hyphens
   dat$re_date = gsub("\\.|,|, |/|\\-|\"|\\s", "-", dat$DATE)
-
+  
   # Extract year from dates formatted ymd, dmy, ydm, and mdy, respectively
   dat[dat$date_format=='ymd', 'year'] = sub('(^\\d+|\\w+|\\W+)-.*', replacement = '\\1', dat[dat$date_format=='ymd', 're_date'])
   dat[dat$date_format=='dmy', 'year'] = sub('.*-', '', dat[dat$date_format=='dmy', 're_date'])
   dat[dat$date_format=='ydm', 'year'] = sub('(^\\d+|\\w+|\\W+)-.*', replacement = '\\1', dat[dat$date_format=='ydm', 're_date'])
   dat[dat$date_format=='mdy', 'year'] = sub('.*-', '', dat[dat$date_format=='mdy', 're_date'])
-
+  
   # Extract month from dates formatted ymd, dmy, ydm, and mdy, respectively
   dat[dat$date_format=='ymd', 'month'] = gsub('^[^-]*-([^-]+).*', '\\1', dat[dat$date_format=='ymd', 're_date'])
   dat[dat$date_format=='dmy', 'month'] = gsub('^[^-]*-([^-]+).*', '\\1', dat[dat$date_format=='dmy', 're_date'])
@@ -51,7 +51,7 @@ sort_date = function(dat){
   dat$month = gsub('^November$', '11', dat$month)
   dat$month = gsub('^Dec$', '12', dat$month)
   dat$month = gsub('^December$', '12', dat$month)
-
+  
   # Extract day from dates formatted ymd, dmy, ydm, and mdy, respectively
   dat[dat$date_format=='ymd', 'day'] = sub('.*-', '', dat[dat$date_format=='ymd', 're_date'])
   dat[dat$date_format=='dmy', 'day'] = sub('(^\\d+|\\w+|\\W+)-.*', replacement = '\\1', dat[dat$date_format=='dmy', 're_date'])
@@ -78,6 +78,6 @@ test_data = data.frame(DATE)
 test_data$date_format = c('dmy','dmy','ymd','ymd','dmy','ydm','dmy','mdy','ymd','dmy')
 
 # Function
-sort_date(test_data)
+format_date(test_data)
 
 ```
