@@ -1,4 +1,4 @@
-This minimal **`sort_date()`** function ([see origin](https://twitter.com/SauChin_Chen/status/1187550520774279168)) takes a dataframe (e.g., from Excel) containing a 'DATE' and a 'date_format' column (among any others). The original date format ('dmy', 'ymd', 'ydm' or 'mdy') needs to be pre-entered, whether in a spreadsheet or in R. All else automatic.
+This minimal **`sort_date()`** function ([see origin](https://twitter.com/SauChin_Chen/status/1187550520774279168)) converts variously formatted dates to computer format (YYYY-MM-DD). It takes a dataframe (e.g., from a spreadsheet) containing a 'DATE' and a 'date_format' column (among any others). The original date format ('dmy', 'ymd', 'ydm' or 'mdy') needs to be pre-entered, whether in a spreadsheet or in R. All else automatic.
 
 ![Example](https://github.com/pablobernabeu/date-converter/blob/master/dates.png)
 
@@ -74,7 +74,7 @@ DATE = c('17.10.2019', '18.9.19', '2019-10.18', '19.10.17', '23/9/2019', '2019/2
          'December 9, 2019', '2019 December 9', '10 Dec 2019')
 test_data = data.frame(DATE)
 
-# Manually enter date format (this is the only part that will need to be manually entered, in Excel or R)
+# Manually enter date format (this is the only part that will need to be manually entered, in a spreadsheet or R)
 test_data$date_format = c('dmy','dmy','ymd','ymd','dmy','ydm','dmy','mdy','ymd','dmy')
 
 # Function
