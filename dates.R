@@ -62,8 +62,8 @@ sort_date = function(dat){
 
 
 # Test example
-DATE = c('17.10.2019', '18.9.2019', '2019-10.18', '2019.10.17', '23/9/2019', '2019/23/9', '7 Nov 19', 
-         'December 9, 19', '2019 December 9', '10 Dec 2019')
+DATE = c('17.10.2019', '18.9.19', '2019-10.18', '19.10.17', '23/9/2019', '2019/23/9', '7 Nov 19', 
+         'December 9, 2019', '2019 December 9', '10 Dec 2019')
 test_data = data.frame(DATE)
 
 # Manually enter date format (this is the only part that will need to be manually entered, in Excel or R)
