@@ -1,3 +1,4 @@
+
 # R function for converting variously formatted dates to computer format (YYYY-MM-DD).
 
 sort_date = function(dat){
