@@ -5,7 +5,8 @@ This minimal **`sort_date()`** function ([see origin](https://twitter.com/SauChi
 -------------------------------------------------------------------------
 
 ```
-# Quite minimal function, Any years abbreviated as 19 or 20 are changed to 2019 and 2020.
+
+# R function for converting variously formatted dates to computer format (YYYY-MM-DD).
 
 sort_date = function(dat){
 
@@ -21,10 +22,6 @@ sort_date = function(dat){
   dat[dat$date_format=='dmy', 'year'] = sub('.*-', '', dat[dat$date_format=='dmy', 're_date'])
   dat[dat$date_format=='ydm', 'year'] = sub('(^\\d+|\\w+|\\W+)-.*', replacement = '\\1', dat[dat$date_format=='ydm', 're_date'])
   dat[dat$date_format=='mdy', 'year'] = sub('.*-', '', dat[dat$date_format=='mdy', 're_date'])
-  
-  # Change abbreviated years to full form
-  dat$year = gsub('^19$', '2019', dat$year)
-  dat$year = gsub('^20$', '2020', dat$year)
 
   # Extract month from dates formatted ymd, dmy, ydm, and mdy, respectively
   dat[dat$date_format=='ymd', 'month'] = gsub('^[^-]*-([^-]+).*', '\\1', dat[dat$date_format=='ymd', 're_date'])
@@ -68,4 +65,19 @@ sort_date = function(dat){
   return(dat[,c('DATE', 'date_format', 'sorted_date')])
   
 }
+
+
+
+
+# Test example
+DATE = c('17.10.2019', '18.9.19', '2019-10.18', '19.10.17', '23/9/2019', '2019/23/9', '7 Nov 19', 
+         'December 9, 2019', '2019 December 9', '10 Dec 2019')
+test_data = data.frame(DATE)
+
+# Manually enter date format (this is the only part that will need to be manually entered, in Excel or R)
+test_data$date_format = c('dmy','dmy','ymd','ymd','dmy','ydm','dmy','mdy','ymd','dmy')
+
+# Function
+sort_date(test_data)
+
 ```
