@@ -54,8 +54,12 @@ format_date = function(dat){
   # Order parts as YYYY-MM-DD
   dat$sorted_date = paste0(dat$year, '-', dat$month, '-', dat$day)
   
+  saved_data <<- dat
+  
   # Return
+  message("Find new date column after your own variables in new dataframe called 'saved_data'")
   return(dat[,c('DATE', 'date_format', 'sorted_date')])
+  
   
 }
 
@@ -72,3 +76,4 @@ test_data$date_format = c('dmy','dmy','ymd','ymd','dmy','ydm','dmy','mdy','ymd',
 
 # Function
 format_date(test_data)
+saved_data
