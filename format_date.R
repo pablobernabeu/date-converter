@@ -59,8 +59,7 @@ format_date = function(dat){
   # Return
   message("Find new date column after your own variables in new dataframe called 'saved_data'")
   return(dat[,c('DATE', 'date_format', 'sorted_date')])
-  
-  
+
 }
 
 
