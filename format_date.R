@@ -54,12 +54,13 @@ format_date = function(dat){
   # Order parts as YYYY-MM-DD
   dat$sorted_date = paste0(dat$year, '-', dat$month, '-', dat$day)
   
-  saved_data <<- dat
+  # Add new date column and save
+  saved_data <<- dat[,c('DATE', 'date_format', 'sorted_date')]
   
   # Return
   message("Find new date column after your own variables in new dataframe called 'saved_data'")
-  return(dat[,c('DATE', 'date_format', 'sorted_date')])
-
+  return(saved_data)
+  
 }
 
 
