@@ -52,21 +52,21 @@ format_date = function(dat){
   dat[dat$date_format=='mdy', 'day'] = gsub('^[^-]*-([^-]+).*', '\\1', dat[dat$date_format=='mdy', 're_date'])
   
   # Order parts as YYYY-MM-DD
-  dat$sorted_date = paste0(dat$year, '-', dat$month, '-', dat$day)
+  dat$formatted_date = paste0(dat$year, '-', dat$month, '-', dat$day)
   
   # Add new date column and save
-  saved_data <<- dat[,c('DATE', 'date_format', 'sorted_date')]
+  saved_data <<- dat[,c('DATE', 'date_format', 'formatted_date')]
   
   # Return
-  message("Find new date column after your own variables in new dataframe called 'saved_data'")
+  message("Find new date column 'formatted_date' after your own variables in new dataframe called 'saved_data'")
   return(saved_data)
   
 }
 
 
 
-
 # Test example
+
 DATE = c('17.10.2019', '18.9.19', '2019-10.18', '19.10.17', '23/9/2019', '2019/23/9', '7 Nov 19', 
          'December 9, 2019', '2019 December 9', '10 Dec 2019')
 test_data = data.frame(DATE)

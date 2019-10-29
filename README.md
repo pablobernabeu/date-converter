@@ -1,9 +1,5 @@
 This minimal **`format_date()`** function ([see origin](https://twitter.com/SauChin_Chen/status/1187550520774279168)) converts variously formatted dates to computer format (YYYY-MM-DD). It takes a dataframe (e.g., from a spreadsheet) containing a 'DATE' and a 'date_format' column (among any others). The original date format ('dmy', 'ymd', 'ydm' or 'mdy') needs to be pre-entered, whether in a spreadsheet or in R. All else automatic.
 
-![Example](https://github.com/pablobernabeu/date-converter/blob/master/example.png)
-
--------------------------------------------------------------------------
-
 ```
 
 # R function for converting variously formatted dates to computer format (YYYY-MM-DD).
@@ -59,17 +55,24 @@ format_date = function(dat){
   dat[dat$date_format=='mdy', 'day'] = gsub('^[^-]*-([^-]+).*', '\\1', dat[dat$date_format=='mdy', 're_date'])
   
   # Order parts as YYYY-MM-DD
-  dat$sorted_date = paste0(dat$year, '-', dat$month, '-', dat$day)
+  dat$formatted_date = paste0(dat$year, '-', dat$month, '-', dat$day)
+  
+  # Add new date column and save
+  saved_data <<- dat[,c('DATE', 'date_format', 'formatted_date')]
   
   # Return
-  return(dat[,c('DATE', 'date_format', 'sorted_date')])
+  message("Find new date column 'formatted_date' after your own variables in new dataframe called 'saved_data'")
+  return(saved_data)
   
 }
 
+```
 
 
+**Test example**
 
-# Test example
+```
+
 DATE = c('17.10.2019', '18.9.19', '2019-10.18', '19.10.17', '23/9/2019', '2019/23/9', '7 Nov 19', 
          'December 9, 2019', '2019 December 9', '10 Dec 2019')
 test_data = data.frame(DATE)
@@ -79,5 +82,37 @@ test_data$date_format = c('dmy','dmy','ymd','ymd','dmy','ydm','dmy','mdy','ymd',
 
 # Function
 format_date(test_data)
+saved_data
+
+```
+
+
+Result
+
+```
+
+Find new date column 'formatted_date' after your own variables in new dataframe called 'saved_data'
+               DATE date_format formatted_date
+1        17.10.2019         dmy     2019-10-17
+2           18.9.19         dmy        19-9-18
+3        2019-10.18         ymd     2019-10-18
+4          19.10.17         ymd       19-10-17
+5         23/9/2019         dmy      2019-9-23
+6         2019/23/9         ydm      2019-9-23
+7          7 Nov 19         dmy        19-11-7
+8  December 9, 2019         mdy      2019-12-9
+9   2019 December 9         ymd      2019-12-9
+10      10 Dec 2019         dmy     2019-12-10
+               DATE date_format formatted_date
+1        17.10.2019         dmy     2019-10-17
+2           18.9.19         dmy        19-9-18
+3        2019-10.18         ymd     2019-10-18
+4          19.10.17         ymd       19-10-17
+5         23/9/2019         dmy      2019-9-23
+6         2019/23/9         ydm      2019-9-23
+7          7 Nov 19         dmy        19-11-7
+8  December 9, 2019         mdy      2019-12-9
+9   2019 December 9         ymd      2019-12-9
+10      10 Dec 2019         dmy     2019-12-10
 
 ```
